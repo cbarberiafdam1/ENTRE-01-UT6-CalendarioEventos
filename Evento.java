@@ -1,6 +1,6 @@
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -24,9 +24,15 @@ public class Evento {
      */                 
     public Evento(String nombre, String fecha, String horaInicio,
     String horaFin) {
-         
+        String[] resul = nombre.split(" ");
+        this.nombre = "";
+        for (int i = 0; i < resul.length; i++){
+            this.nombre = nombre + "" + resul[i].trim().toUpperCase();
+        }
+        this.fecha = LocalDate.parse(fecha, formateadorFecha);
+        this.horaInicio = LocalTime.parse(horaInicio, formateadorHora);
+        this.horaFin = LocalTime.parse(horaFin, formateadorHora);
     }
-
    
 
     /**
@@ -90,7 +96,24 @@ public class Evento {
      * que se obtendrá a partir de la fecha del evento
      */
     public int getDia() {
-        return 0;
+        int dia = 0;
+        switch(fecha.getDayOfWeek()){
+            case MONDAY: dia = 1;
+            break;
+            case TUESDAY: dia = 2;
+            break;
+            case WEDNESDAY: dia = 3;
+            break;
+            case THURSDAY: dia = 4;
+            break;
+            case FRIDAY: dia = 5;
+            break;
+            case SATURDAY: dia = 6;
+            break;
+            case SUNDAY: dia = 7;
+            break;
+        }
+        return dia;
     }
 
     /**
@@ -98,15 +121,16 @@ public class Evento {
      * que se obtendrá a partir de la fecha del evento
      */
     public Mes getMes() {
-        return null;
+        Mes mes = null;
+        return mes;
     }
 
     /**
      * calcula y devuelve la duración del evento en minutos
      */
     public int getDuracion() {
-        return 0;
-
+        int duracion = 0;
+        return duracion;
     }
 
     /**
@@ -118,7 +142,6 @@ public class Evento {
      */
     public boolean antesDe(Evento otro) {
         return true;
-
     }
 
   
