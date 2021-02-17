@@ -169,7 +169,9 @@ public class Evento {
      * Pista! usa un objeto LocalDateTime
      */
     public boolean antesDe(Evento otro) {
-        return true;
+        LocalDateTime fechas = LocalDateTime.of(fecha, horaInicio);
+        LocalDateTime otraFecha = LocalDateTime.of(otro.getFecha(), otro.getHoraInicio());
+        return fechas.isBefore(otraFecha);
     }
 
   
