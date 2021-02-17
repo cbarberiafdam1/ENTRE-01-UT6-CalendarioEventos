@@ -122,6 +122,32 @@ public class Evento {
      */
     public Mes getMes() {
         Mes mes = null;
+        switch(fecha.getMonth()){
+            case JANUARY: mes = Mes.ENERO;
+            break;
+            case FEBRUARY: mes = Mes.FEBRERO;
+            break;
+            case MARCH: mes = Mes.MARZO;
+            break;
+            case APRIL: mes = Mes.ABRIL;
+            break;
+            case MAY: mes = Mes.MAYO;
+            break;
+            case JUNE: mes = Mes.JUNIO;
+            break;
+            case JULY: mes = Mes.JULIO;
+            break;
+            case AUGUST: mes = Mes.AGOSTO;
+            break;
+            case SEPTEMBER: mes = Mes.SEPTIEMBRE;
+            break;
+            case OCTOBER: mes = Mes.OCTUBRE;
+            break;
+            case NOVEMBER: mes = Mes.NOVIEMBRE;
+            break;
+            case DECEMBER: mes = Mes.DICIEMBRE;
+            break;
+        }
         return mes;
     }
 
@@ -129,7 +155,9 @@ public class Evento {
      * calcula y devuelve la duración del evento en minutos
      */
     public int getDuracion() {
-        int duracion = 0;
+        int horas = horaFin.getHour() - horaInicio.getHour();
+        int minutos = horaFin.getMinute() - horaInicio.getMinute();
+        int duracion = horas * 60 + minutos;
         return duracion;
     }
 
