@@ -26,14 +26,16 @@ public class Evento {
     String horaFin) {
         String[] resul = nombre.split(" ");
         this.nombre = "";
-        for (int i = 0; i < resul.length; i++){
-            this.nombre = nombre + "" + resul[i].trim().toUpperCase();
+        for(int i = 0; i < resul.length;i++){
+            if(resul[i].compareTo(" ") > 0){
+                resul[i] = resul[i].trim();
+                this.nombre += resul[i].substring(0,1).toUpperCase() + (resul[i].substring(1,resul[i].length()) + " ");
+            }
+            this.fecha = LocalDate.parse(fecha, formateadorFecha);
+            this.horaInicio = LocalTime.parse(horaInicio, formateadorHora);
+            this.horaFin = LocalTime.parse(horaFin, formateadorHora);
         }
-        this.fecha = LocalDate.parse(fecha, formateadorFecha);
-        this.horaInicio = LocalTime.parse(horaInicio, formateadorHora);
-        this.horaFin = LocalTime.parse(horaFin, formateadorHora);
     }
-   
 
     /**
      * accesor para el nombre del evento
@@ -174,7 +176,6 @@ public class Evento {
         return fechas.isBefore(otraFecha);
     }
 
-  
     /**
      * representación textual del evento  
      */
