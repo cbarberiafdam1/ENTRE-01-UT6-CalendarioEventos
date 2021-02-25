@@ -1,4 +1,4 @@
-
+package programacion.entregaut6.modelo;
 /** 
  * @author - Carla Barberia Flamarique 
  * 

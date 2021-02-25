@@ -1,3 +1,4 @@
+package programacion.entregaut6.modelo;
 import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -5,6 +6,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.Map;
 import java.util.Iterator;
+import programacion.entregaut6.modelo.CalendarioEventos;
+import programacion.entregaut6.io.CalendarioIO;
 /**
  * Esta clase modela un sencillo calendario de eventos.
  * 
@@ -48,7 +51,7 @@ public class CalendarioEventos {
             calendario.put(nuevo.getMes(), evento);
         }else{
             ArrayList<Evento> eventos = calendario.get(nuevo.getMes());
-            for(int i = 0; i <= eventos.size(); i++){
+            for(int i = 0; i < eventos.size(); i++){
                 if(nuevo.antesDe(eventos.get(i))){
                     eventos.add(i, nuevo);
                 }
@@ -96,7 +99,8 @@ public class CalendarioEventos {
         TreeSet<Mes> conjunto = new TreeSet<>();
         int mayor = 0;
         for(Mes mes : meses){
-            if(calendario){
+            if(calendario.get(mes).size() >= mayor){
+                conjunto.add(mes);                
             }
         }
         return conjunto;
@@ -107,8 +111,17 @@ public class CalendarioEventos {
      * Se devuelve uno solo (el primero encontrado) aunque haya varios
      */
     public String eventoMasLargo() {
+        Set<Mes> meses = calendario.keySet();
         String nombreEvento = "";
-
+        int duracion = 0;
+        for(Mes mes : meses){
+            for(Evento evento : calendario.get(mes)){
+                if(evento.getDuracion() > duracion){
+                    duracion = evento.getDuracion();
+                    nombreEvento = evento.getNombre();
+                }
+            }
+        }
         return nombreEvento;
     }
 
@@ -122,15 +135,23 @@ public class CalendarioEventos {
      * completa del map
      */
     public int cancelarEventos(Mes[] meses, int dia) {
-        int borrados = 0;
-        ArrayList<Evento> cursosDeCategoria = calendario.get(meses);
-        Iterator<Evento> it = cursosDeCategoria.iterator();
-        while(it.hasNext()){
-            Evento evento = it.next();
-
+        int eliminados = 0;
+        for(Mes mes : meses){
+            if(calendario.containsKey(mes)){
+                ArrayList<Evento> eventosMes = calendario.get(mes);
+                for(Evento evento : eventosMes){
+                    if(evento.getDia() == dia){
+                        eventosMes.remove(evento);
+                        eliminados++;
+                    }
+                }
+                if (eventosMes.isEmpty()){
+                    calendario.remove(mes);
+                }
+            }
         }
-        return borrados;
-    }
+        return eliminados;
+    } 
 
     /**
      * Código para testear la clase CalendarioEventos

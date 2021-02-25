@@ -1,3 +1,4 @@
+package programacion.entregaut6.modelo;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
@@ -31,9 +32,9 @@ public class Evento {
                 resul[i] = resul[i].trim();
                 this.nombre += resul[i].substring(0,1).toUpperCase() + (resul[i].substring(1,resul[i].length()) + " ");
             }
-            this.fecha = LocalDate.parse(fecha, formateadorFecha);
-            this.horaInicio = LocalTime.parse(horaInicio, formateadorHora);
-            this.horaFin = LocalTime.parse(horaFin, formateadorHora);
+            this.fecha = LocalDate.parse(fecha.trim(), formateadorFecha);
+            this.horaInicio = LocalTime.parse(horaInicio.trim(), formateadorHora);
+            this.horaFin = LocalTime.parse(horaFin.trim(), formateadorHora);
         }
     }
 
