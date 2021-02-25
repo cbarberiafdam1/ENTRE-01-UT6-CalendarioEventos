@@ -42,7 +42,19 @@ public class CalendarioEventos {
      * muy bien usar aquí
      */
     public void addEvento(Evento nuevo) {
-        
+        if(!calendario.containsKey(nuevo.getMes())){
+            ArrayList<Evento> evento = new ArrayList<>();
+            evento.add(nuevo);
+            calendario.put(nuevo.getMes(), evento);
+        }else{
+            ArrayList<Evento> eventos = calendario.get(nuevo.getMes());
+            for(int i = 0; i <= eventos.size(); i++){
+                if(nuevo.antesDe(eventos.get(i))){
+                    eventos.add(i, nuevo);
+                }
+            }
+            calendario.put(nuevo.getMes(), eventos);
+        }
     }
 
     /**
@@ -51,7 +63,14 @@ public class CalendarioEventos {
      * Usar el conjunto de entradas  
      */
     public String toString() {
-        
+        StringBuilder sb = new StringBuilder();
+        Set<Map.Entry<Mes, ArrayList<Evento>>> conjunto = calendario.entrySet();
+        Iterator<Map.Entry<Mes, ArrayList<Evento>>> it = conjunto.iterator();
+        while (it.hasNext()) {
+            Map.Entry<Mes, ArrayList<Evento>> entrada = it.next();
+            sb.append(entrada.getKey()).append("\n").append(entrada.getValue().toString()).append("\n");
+        }
+        return sb.toString();
     }
 
     /**
@@ -59,7 +78,11 @@ public class CalendarioEventos {
      * Si el mes no existe se devuelve 0
      */
     public int totalEventosEnMes(Mes mes) {
-        
+        if(calendario.get(mes) == null){
+            return 0;
+        }else{
+            return calendario.get(mes).size();
+        }
     }
 
     /**
@@ -69,7 +92,14 @@ public class CalendarioEventos {
      *  
      */
     public TreeSet<Mes> mesesConMasEventos() {
-        
+        Set<Mes> meses = calendario.keySet();
+        TreeSet<Mes> conjunto = new TreeSet<>();
+        int mayor = 0;
+        for(Mes mes : meses){
+            if(calendario){
+            }
+        }
+        return conjunto;
     }
 
     /**
@@ -77,8 +107,9 @@ public class CalendarioEventos {
      * Se devuelve uno solo (el primero encontrado) aunque haya varios
      */
     public String eventoMasLargo() {
+        String nombreEvento = "";
 
-        return null;
+        return nombreEvento;
     }
 
     /**
@@ -91,8 +122,14 @@ public class CalendarioEventos {
      * completa del map
      */
     public int cancelarEventos(Mes[] meses, int dia) {
+        int borrados = 0;
+        ArrayList<Evento> cursosDeCategoria = calendario.get(meses);
+        Iterator<Evento> it = cursosDeCategoria.iterator();
+        while(it.hasNext()){
+            Evento evento = it.next();
 
-        return 0;
+        }
+        return borrados;
     }
 
     /**
