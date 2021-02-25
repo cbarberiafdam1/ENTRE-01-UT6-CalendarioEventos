@@ -98,24 +98,7 @@ public class Evento {
      * que se obtendrá a partir de la fecha del evento
      */
     public int getDia() {
-        int dia = 0;
-        switch(fecha.getDayOfWeek()){
-            case MONDAY: dia = 1;
-            break;
-            case TUESDAY: dia = 2;
-            break;
-            case WEDNESDAY: dia = 3;
-            break;
-            case THURSDAY: dia = 4;
-            break;
-            case FRIDAY: dia = 5;
-            break;
-            case SATURDAY: dia = 6;
-            break;
-            case SUNDAY: dia = 7;
-            break;
-        }
-        return dia;
+        return fecha.getDayOfWeek().getValue();
     }
 
     /**
@@ -123,34 +106,7 @@ public class Evento {
      * que se obtendrá a partir de la fecha del evento
      */
     public Mes getMes() {
-        Mes mes = null;
-        switch(fecha.getMonth()){
-            case JANUARY: mes = Mes.ENERO;
-            break;
-            case FEBRUARY: mes = Mes.FEBRERO;
-            break;
-            case MARCH: mes = Mes.MARZO;
-            break;
-            case APRIL: mes = Mes.ABRIL;
-            break;
-            case MAY: mes = Mes.MAYO;
-            break;
-            case JUNE: mes = Mes.JUNIO;
-            break;
-            case JULY: mes = Mes.JULIO;
-            break;
-            case AUGUST: mes = Mes.AGOSTO;
-            break;
-            case SEPTEMBER: mes = Mes.SEPTIEMBRE;
-            break;
-            case OCTOBER: mes = Mes.OCTUBRE;
-            break;
-            case NOVEMBER: mes = Mes.NOVIEMBRE;
-            break;
-            case DECEMBER: mes = Mes.DICIEMBRE;
-            break;
-        }
-        return mes;
+       return Mes.values()[fecha.getMonthValue() - 1];
     }
 
     /**

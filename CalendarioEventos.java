@@ -42,25 +42,7 @@ public class CalendarioEventos {
      * muy bien usar aquí
      */
     public void addEvento(Evento nuevo) {
-        boolean resul = false;
-        ArrayList<Evento> evento = new ArrayList();
-        if(!calendario.containsKey(nuevo.getMes())){
-            evento.add(nuevo);
-            calendario.put(nuevo.getMes(),evento);
-        }
-        else{
-            evento = calendario.get(nuevo.getMes());
-            for(int i = 0; i < evento.size(); i++){
-                if(!evento.get(i).antesDe(nuevo)){
-                    evento.add(i,nuevo);
-                    resul = true;
-                    break;
-                }
-            }
-            if(!resul){
-                evento.add(nuevo);
-            }
-        }
+        
     }
 
     /**
@@ -69,14 +51,7 @@ public class CalendarioEventos {
      * Usar el conjunto de entradas  
      */
     public String toString() {
-        String salida = "";
-        Set<Map.Entry<Mes,ArrayList<Evento>>> evento = calendario.entrySet();
-        Iterator<Map.Entry<Mes,ArrayList<Evento>>> it = evento.iterator();
-        while(it.hasNext()){
-            Map.Entry<Mes, ArrayList<Evento>> entrada = it.next();
-            salida = "\n" + salida + entrada.getKey() + "\t" + entrada.getValue() +"\n";
-        }
-        return salida;
+        
     }
 
     /**
@@ -84,19 +59,7 @@ public class CalendarioEventos {
      * Si el mes no existe se devuelve 0
      */
     public int totalEventosEnMes(Mes mes) {
-        int contador = 0;
-        Set<Map.Entry<Mes,ArrayList<Evento>>> evento = calendario.entrySet();
-        Iterator<Map.Entry<Mes,ArrayList<Evento>>> it = evento.iterator();
-        while(it.hasNext()){
-            Map.Entry<Mes, ArrayList<Evento>> entrada = it.next();
-            if(entrada.getKey() == mes){
-                contador = entrada.getValue().size();
-                break;
-            }else{
-                contador = 0;
-            }            
-        }
-        return contador;
+        
     }
 
     /**
@@ -106,8 +69,7 @@ public class CalendarioEventos {
      *  
      */
     public TreeSet<Mes> mesesConMasEventos() {
-        // TreeSet<Mes> arbol = new TreeSet<Mes>();
-       
+        
     }
 
     /**
